@@ -16,3 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 });
+
+document.querySelector("[src='settings.svg']").addEventListener('click', () => {
+  document.body.className = "settings";
+  document.getElementsByTagName("h1")[0].innerHTML = "Settings";
+  router.setState("settings");
+});
+
+//document.addEventListener('popstate', ())
