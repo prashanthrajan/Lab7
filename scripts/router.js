@@ -36,6 +36,13 @@ router.setState = function(set) {
    *    2. You may modify the parameters of setState() as much as you like
    */
   if (set == "settings"){
-    history.pushState({ 'page_id': 1}, 'settings', '#settings');
+    document.body.className = "settings";
+    document.getElementsByTagName("h1")[0].innerHTML = "Settings";
+    history.pushState({ 'page_id': "settings"}, 'settings', '#settings');
+  }
+  else if (set == "journal") {
+    document.body.className = "";
+    document.getElementsByTagName("h1")[0].innerHTML = "Journal Entries";
+    history.pushState({ 'page_id': "journal"}, 'journal', '');
   }
 }
