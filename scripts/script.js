@@ -29,3 +29,47 @@ window.addEventListener('popstate', (event) => {
     router.setState(event.state.page_id);
   }
 });
+
+document.getElementsByTagName("h1")[0].addEventListener('click', () => {
+  router.setState("journal");
+});
+
+document.addEventListener('click', function(e){
+  var num = 0;
+  if(e.target.tagName=="JOURNAL-ENTRY"){
+
+    var entries = document.getElementsByTagName("JOURNAL-ENTRY");
+
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i] === e.target) {
+        num = i+1;
+      }
+    }
+
+    var entry = e.target.entry;
+    console.log(num);
+    router.setState(num);
+  }
+})
+/*
+var elements = document.getElementsByTagName("JOURNAL-ENTRY");
+
+var myFunction = function() {
+    //var attribute = this.getAttribute("data-myattribute");
+    alert("monkey");
+};
+
+for (var i = 0; i < elements.length; i++) {
+    alert("hello");
+    elements[i].addEventListener('click', myFunction, false);
+}
+
+window.onpopstate = function(event) {
+  if (event.state == null) {
+    router.setState("journal");
+  }
+  else {
+    router.setState(event.state.page_id);
+  }
+};
+*/

@@ -35,14 +35,28 @@ router.setState = function(set) {
    *    1. You may add as many helper functions in this file as you like
    *    2. You may modify the parameters of setState() as much as you like
    */
-  if (set == "settings"){
+  if (set == "settings") {
     document.body.className = "settings";
     document.getElementsByTagName("h1")[0].innerHTML = "Settings";
-    history.pushState({ 'page_id': "settings"}, 'settings', '#settings');
+    history.pushState({ 'page_id': "settings"}, 'settings', 'http://127.0.0.1:5500/#settings');
   }
   else if (set == "journal") {
     document.body.className = "";
     document.getElementsByTagName("h1")[0].innerHTML = "Journal Entries";
-    history.pushState({ 'page_id': "journal"}, 'journal', '');
+    history.pushState({ 'page_id': "journal"}, 'journal', 'http://127.0.0.1:5500');
+  }
+  else {
+    document.body.className = "single-entry";
+    document.getElementsByTagName("h1")[0].innerHTML = "Entry " + set;
+
+    document.getElementsByTagName("entry-page")[0].remove();
+    let newentry = document.createElement("entry-page");
+    document.body.appendChild(newentry);
+    
+    let entry = document.getElementsByTagName("journal-entry")[set - 1].entry;
+    document.getElementsByTagName("entry-page")[0].entry = entry;
+
+    let link = "http://127.0.0.1:5500/#entry" + set;
+    history.pushState({ 'page_id': set}, 'entry', link);
   }
 }
