@@ -38,12 +38,12 @@ router.setState = function(set) {
   if (set == "settings") {
     document.body.className = "settings";
     document.getElementsByTagName("h1")[0].innerHTML = "Settings";
-    history.pushState({ 'page_id': "settings"}, 'settings', 'http://127.0.0.1:5500/#settings');
+    history.pushState({ 'page_id': "settings"}, 'settings', '/#settings');
   }
   else if (set == "journal") {
     document.body.className = "";
     document.getElementsByTagName("h1")[0].innerHTML = "Journal Entries";
-    history.pushState({ 'page_id': "journal"}, 'journal', 'http://127.0.0.1:5500');
+    history.pushState({ 'page_id': "journal"}, 'journal', '/');
   }
   else {
     document.body.className = "single-entry";
@@ -56,7 +56,7 @@ router.setState = function(set) {
     let entry = document.getElementsByTagName("journal-entry")[set - 1].entry;
     document.getElementsByTagName("entry-page")[0].entry = entry;
 
-    let link = "http://127.0.0.1:5500/#entry" + set;
+    let link = "/#entry" + set;
     history.pushState({ 'page_id': set}, 'entry', link);
   }
 }
