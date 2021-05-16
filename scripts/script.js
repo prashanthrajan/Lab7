@@ -17,10 +17,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.querySelector("[src='settings.svg']").addEventListener('click', () => {
-  document.body.className = "settings";
-  document.getElementsByTagName("h1")[0].innerHTML = "Settings";
-  router.setState("settings");
+document.getElementsByTagName("h1")[0].addEventListener('click', () => {
+  router.setState({ page: "journal" }, false);
 });
 
-//document.addEventListener('popstate', ())
+document.querySelector("[src='settings.svg']").addEventListener('click', () => {
+  router.setState({ page: "settings"}, false);
+});
+
+window.addEventListener('popstate', (e) => {
+  if (history.state !== null) {
+    router.setState(history.state, true);
+  } else {
+    router.setState({ page: "journal" }, true);
+  }
+});
+
+document.addEventListener('click', function(e){
+  var num = 0;
+  if(e.target.tagName=="JOURNAL-ENTRY"){
+
+    var entries = document.getElementsByTagName("JOURNAL-ENTRY");
+
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i] === e.target) {
+        num = i+1;
+      }
+    }
+
+    var entry = e.target.entry;
+    router.setState(num);
+  }
+})
