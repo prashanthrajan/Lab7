@@ -4,4 +4,4 @@
 - Shane Valderrama
 - Prashanth Rajan
 
-LINK TO REPOSITORY
+https://prashanthrajan.github.io/Lab7/
